@@ -16,7 +16,7 @@
     color: #fff;
     border-radius: 30px;
     padding: 12px;
-    word-wrap: anywhere;
+    word-break: break-word;
 }
 .me {
     align-self: end;
