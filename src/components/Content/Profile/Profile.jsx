@@ -1,5 +1,5 @@
 import React from "react";
-import style from './Porfile.module.css'
+import style from './Profile.module.css'
 
 const Profile = () => {
     const images = [
