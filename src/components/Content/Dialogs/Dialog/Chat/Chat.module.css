@@ -1,0 +1,44 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px 15px;
+    overflow-y: scroll;
+    max-height: 80%;
+}
+.me, .them {
+    max-width: 75%;
+}
+.Main > div > p {
+    font-size: 17px;
+    letter-spacing: .2px;
+    background: #434343;
+    color: #fff;
+    border-radius: 30px;
+    padding: 12px;
+    word-wrap: anywhere;
+}
+.me {
+    align-self: end;
+    margin-right: 20px;
+}
+.me::after {
+    content: ' <';
+    position: absolute;
+    top: 0;
+    right: -20px;
+}
+.them {
+    align-self: start;
+    margin-left: 20px;
+}
+.them::before {
+    content: '> ';
+    position: absolute;
+    top: 0;
+    left: -20px;
+}
+.me::after, .them::before {
+    top: 50%;
+    transform: translateY(-50%);
+}

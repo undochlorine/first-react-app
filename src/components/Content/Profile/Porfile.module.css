@@ -1,0 +1,46 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.header {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    width: 100%;
+}
+.header > img {
+    width: 100px;
+    aspect-ratio: 1;
+}
+.bio > p {
+    font-size: 20px;
+    width: max-content;
+    height: max-content;
+    margin: 0 auto;
+}
+.photos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.photos > .title > p {
+    font-size: 14px;
+    color: #444444;
+    text-align: left;
+    text-decoration: underline;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.gallery > img {
+    max-width: 110px;
+    max-height: 110px;
+    border-radius: 6px;
+}
+.gallery > img:hover {
+    transform: scale(1.015);
+}

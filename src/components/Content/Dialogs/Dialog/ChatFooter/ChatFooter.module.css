@@ -1,0 +1,20 @@
+.Main {
+    display: flex;
+    /*border: 1px solid #000;*/
+    justify-content: stretch;
+    gap: 20px;
+    padding: 0 25px;
+}
+.Main > input {
+    flex-grow: 1;
+    outline: none;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+.Main > img {
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+}

@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    color: #212121;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+}
+.App {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 50vw;
+    align-items: stretch;
+}
+.content {
+    height: 60vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 25px 16px;
+}
+.content > * { flex-grow: 1 }
+.wrapper > * {
+    background: #f8d58c;
+    border-radius: 16px;
+}

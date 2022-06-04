@@ -1,0 +1,23 @@
+.Main {
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: start;
+}
+.Main.active {
+    border: 2px solid #333;
+    border-radius: 20px;
+}
+.Main > img {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+}
+.Main > div {
+    display: flex;
+    flex-direction: column;
+}
+.name {
+    width: max-content;
+}
