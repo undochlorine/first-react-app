@@ -9,7 +9,7 @@ const state = {
         ]
     },
     dialogs: {
-        collocutors: [
+        chat_partners: [
             {
                 id: "1",
                 name: ["Mark", "Chris"],

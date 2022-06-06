@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Dialogs.module.css'
-import Collocutor from "./Collocutor/Collocutor"
+import Chat_partner from "./Chat_partner/Chat_partner"
 import {Route, Routes} from "react-router-dom";
 import Chat from './Dialog/Chat/Chat'
 import ChatFooter from './Dialog/ChatFooter/ChatFooter'
@@ -10,7 +10,7 @@ const Dialogs = (props) => {
         <div className={style.Main}>
             <div className={style.collocutors}>
                 {
-                    props.state.collocutors.map(col => <Collocutor id={col.id} name={col.name} avatar={col.avatar} />)
+                    props.state.chat_partners.map(cp => <Chat_partner id={cp.id} name={cp.name} avatar={cp.avatar} />)
                 }
             </div>
             <div className={style.dialog}>
