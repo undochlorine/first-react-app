@@ -1,3 +1,5 @@
+import renderEntireDom from "../render";
+
 const state = {
     profile: {
         images: [
@@ -62,4 +64,16 @@ const state = {
     music: {}
 }
 
+export const sendMsg = (cpi, msg) => {
+    for (let i = 0; i < state.dialogs.chats.length; i++) {
+        if(state.dialogs.chats[i].path == cpi) {
+            state.dialogs.chats[i].chat_history.push({message: msg, from: 'me'})
+            break;
+        }
+    }
+    renderEntireDom(state);
+    return 'Sent successfully!';
+}
+
+window.state = state;
 export default state;

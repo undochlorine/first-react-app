@@ -14,7 +14,7 @@ function App(props) {
               <Routes>
                   <Route exact path="/" element={<Profile state={props.state.profile} />} />
                   <Route       path="/profile/*" element={<Profile state={props.state.profile} />} />
-                  <Route       path="/dialogs/*" element={<Dialogs state={props.state.dialogs} />} />
+                  <Route       path="/dialogs/*" element={<Dialogs state={props.state.dialogs} sendMsg={props.sendMsg} />} />
                   <Route       path="/music/*" element={<Music state={props.state.music} />} />
               </Routes>
           </div>
