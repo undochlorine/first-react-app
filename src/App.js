@@ -12,10 +12,27 @@ function App(props) {
           <Navbar />
           <div className="content">
               <Routes>
-                  <Route exact path="/" element={<Profile state={props.state.profile} />} />
+                  <Route
+                      exact path="/"
+                      element={<Profile
+                                    state={props.state.profile}
+                                />}
+                  />
                   <Route       path="/profile/*" element={<Profile state={props.state.profile} />} />
-                  <Route       path="/dialogs/*" element={<Dialogs state={props.state.dialogs} sendMsg={props.sendMsg} />} />
-                  <Route       path="/music/*" element={<Music state={props.state.music} />} />
+                  <Route
+                      path="/dialogs/*"
+                      element={<Dialogs
+                                    state={props.state.dialogs}
+                                    sendMsg={props.sendMsg}
+                                    onTypingMsg={props.onTypingMsg}
+                                />}
+                  />
+                  <Route
+                      path="/music/*"
+                      element={<Music
+                                    state={props.state.music}
+                                />}
+                  />
               </Routes>
           </div>
       </div>

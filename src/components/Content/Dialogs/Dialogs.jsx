@@ -10,13 +10,34 @@ const Dialogs = (props) => {
         <div className={style.Main}>
             <div className={style.collocutors}>
                 {
-                    props.state.chat_partners.map(cp => <Chat_partner id={cp.id} name={cp.name} avatar={cp.avatar} />)
+                    props.state.chat_partners.map(cp => {
+                        return (
+                            <Chat_partner
+                                id={cp.id}
+                                name={cp.name}
+                                avatar={cp.avatar}
+                            />)
+                    })
                 }
             </div>
             <div className={style.dialog}>
                 <Routes>
                     {
-                        props.state.chats.map(c => <Route path={c.path} element={[ <Chat chat_history={c.chat_history} />, <ChatFooter sendMsg={props.sendMsg} path={c.path} /> ]} />)
+                        props.state.chats.map(c => {
+                            return (
+                                <Route
+                                    path={c.path}
+                                    element={[
+                                        <Chat chat_history={c.chat_history} />,
+                                        <ChatFooter
+                                            sendMsg={props.sendMsg}
+                                            path={c.path}
+                                            onTypingMsg={props.onTypingMsg}
+                                            typingMsg={c.typingMsg}
+                                        />
+                                    ]}
+                                />)
+                        })
                     }
                 </Routes>
             </div>

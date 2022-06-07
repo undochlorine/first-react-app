@@ -36,7 +36,8 @@ const state = {
                     {message: "Yeah. I'm at home since 2.AM", from: 'them'},
                     {message: "So, what are u gonna do now?", from: 'me'},
                     {message: "I feel like sleepin'. Prolly I gonna have nap.", from: 'them'}
-                ]
+                ],
+                typingMsg: ''
             },
             {
                 path: "/2",
@@ -45,7 +46,8 @@ const state = {
                     {message: "Pleeeeease", from: 'me'},
                     {message: "I'm beggin'", from: 'me'},
                     {message: "Ha, pathetic", from: 'them'}
-                ]
+                ],
+                typingMsg: ''
             },
             {
                 path: "/3",
@@ -57,7 +59,8 @@ const state = {
                         from: 'me'
                     },
                     {message: "I'm not 7, sure I ain't", from: 'them'}
-                ]
+                ],
+                typingMsg: ''
             }
         ]
     },
@@ -68,11 +71,22 @@ export const sendMsg = (cpi, msg) => {
     for (let i = 0; i < state.dialogs.chats.length; i++) {
         if(state.dialogs.chats[i].path == cpi) {
             state.dialogs.chats[i].chat_history.push({message: msg, from: 'me'})
+            state.dialogs.chats[i].typingMsg = '';
             break;
         }
     }
     renderEntireDom(state);
     return 'Sent successfully!';
+}
+export const onTypingMsg = (cpi, msg) => {
+    for (let i = 0; i < state.dialogs.chats.length; i++) {
+        if (state.dialogs.chats[i].path == cpi) {
+            state.dialogs.chats[i].typingMsg = msg;
+            break;
+        }
+    }
+    renderEntireDom(state);
+    return 'Typed successfully!'
 }
 
 window.state = state;
