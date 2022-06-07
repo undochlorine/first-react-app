@@ -1,4 +1,7 @@
-import renderEntireDom from "../render";
+let renderEntireDom = function(){}
+export const subscribe = (observer) => {
+    renderEntireDom = observer;
+}
 
 const state = {
     profile: {
