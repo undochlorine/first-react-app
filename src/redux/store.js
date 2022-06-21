@@ -66,9 +66,9 @@ let store = {
         music: {}
     },
     get state() {return this._state},
-    _renderEntireDom(){},
+    _callSubscriber(){},
     subscribe(observer) {
-        this._renderEntireDom = observer;
+        this._callSubscriber = observer;
     },
     sendMsg(cpi, msg) {
         for (let i = 0; i < this.state.dialogs.chats.length; i++) {
@@ -78,7 +78,7 @@ let store = {
                 break;
             }
         }
-        this._renderEntireDom(this.state);
+        this._callSubscriber(this.state);
         return 'Sent successfully!';
     },
     onTypingMsg(cpi, msg) {
@@ -88,7 +88,7 @@ let store = {
                 break;
             }
         }
-        this._renderEntireDom(this.state);
+        this._callSubscriber(this.state);
         return 'Typed successfully!'
     }
 
