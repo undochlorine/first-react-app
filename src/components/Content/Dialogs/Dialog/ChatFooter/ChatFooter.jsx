@@ -8,11 +8,19 @@ const ChatFooter = (props) => {
     function sendMsg() {
         let msg = input.current.value;
         if (msg !== '')
-            props.sendMsg(props.path, msg);
+            props.dispatch({
+                type: 'SEND-MESSAGE',
+                cpi: props.path,
+                msg: msg
+            });
     }
     function onTypingMsg() {
         let msg = input.current.value;
-        props.onTypingMsg(props.path, msg);
+        props.dispatch({
+            type: 'ON-TYPING-MESSAGE',
+            cpi: props.path,
+            msg: msg
+        });
     }
 
     return (

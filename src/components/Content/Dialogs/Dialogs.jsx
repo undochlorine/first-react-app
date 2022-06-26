@@ -30,10 +30,9 @@ const Dialogs = (props) => {
                                     element={[
                                         <Chat chat_history={c.chat_history} />,
                                         <ChatFooter
-                                            sendMsg={props.sendMsg}
                                             path={c.path}
-                                            onTypingMsg={props.onTypingMsg}
                                             typingMsg={c.typingMsg}
+                                            dispatch={props.dispatch}
                                         />
                                     ]}
                                 />)

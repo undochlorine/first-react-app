@@ -13,8 +13,8 @@ function renderEntireDom(state) {
             <BrowserRouter>
                 <App
                     state={state}
-                    sendMsg={store.sendMsg.bind(store)}
-                    onTypingMsg={store.onTypingMsg.bind(store)} />
+                    dispatch={store.dispatch.bind(store)}
+                />
             </BrowserRouter>
         </React.StrictMode>
     );

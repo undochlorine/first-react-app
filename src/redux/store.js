@@ -70,28 +70,36 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    sendMsg(cpi, msg) {
-        for (let i = 0; i < this.state.dialogs.chats.length; i++) {
-            if(this.state.dialogs.chats[i].path == cpi) {
-                this.state.dialogs.chats[i].chat_history.push({message: msg, from: 'me'})
-                this.state.dialogs.chats[i].typingMsg = '';
-                break;
-            }
-        }
-        this._callSubscriber(this.state);
-        return 'Sent successfully!';
-    },
-    onTypingMsg(cpi, msg) {
-        for (let i = 0; i < this.state.dialogs.chats.length; i++) {
-            if (this.state.dialogs.chats[i].path == cpi) {
-                this.state.dialogs.chats[i].typingMsg = msg;
-                break;
-            }
-        }
-        this._callSubscriber(this.state);
-        return 'Typed successfully!'
-    }
 
+    dispatch(action) {
+        switch (action.type) {
+            case 'SEND-MESSAGE':
+                {
+                for (let i = 0; i < this.state.dialogs.chats.length; i++) {
+                    if(this.state.dialogs.chats[i].path == action.cpi) {
+                        this.state.dialogs.chats[i].chat_history.push({message: action.msg, from: 'me'})
+                        this.state.dialogs.chats[i].typingMsg = '';
+                        break;
+                    }
+                }
+                this._callSubscriber(this.state);
+                return 'Sent successfully!';
+            }
+                break;
+            case 'ON-TYPING-MESSAGE':
+                {
+                for (let i = 0; i < this.state.dialogs.chats.length; i++) {
+                    if (this.state.dialogs.chats[i].path == action.cpi) {
+                        this.state.dialogs.chats[i].typingMsg = action.msg;
+                        break;
+                    }
+                }
+                this._callSubscriber(this.state);
+                return 'Typed successfully!'
+            }
+                break;
+        }
+    }
 }
 
 export default store;

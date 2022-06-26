@@ -23,8 +23,7 @@ function App(props) {
                       path="/dialogs/*"
                       element={<Dialogs
                                     state={props.state.dialogs}
-                                    sendMsg={props.sendMsg}
-                                    onTypingMsg={props.onTypingMsg}
+                                    dispatch={props.dispatch}
                                 />}
                   />
                   <Route
