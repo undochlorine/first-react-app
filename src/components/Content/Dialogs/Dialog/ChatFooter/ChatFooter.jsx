@@ -1,5 +1,6 @@
 import React from "react";
 import style from './ChatFooter.module.css'
+import {sendMsgActionCreator, onTypingMsgActionCreator} from "../../../../../redux/store";
 
 const ChatFooter = (props) => {
 
@@ -8,19 +9,21 @@ const ChatFooter = (props) => {
     function sendMsg() {
         let msg = input.current.value;
         if (msg !== '')
-            props.dispatch({
-                type: 'SEND-MESSAGE',
-                cpi: props.path,
-                msg: msg
-            });
+            props.dispatch(
+                sendMsgActionCreator(
+                    props.path,
+                    msg
+                )
+            );
     }
     function onTypingMsg() {
         let msg = input.current.value;
-        props.dispatch({
-            type: 'ON-TYPING-MESSAGE',
-            cpi: props.path,
-            msg: msg
-        });
+        props.dispatch(
+            onTypingMsgActionCreator(
+                props.path,
+                msg
+            )
+        );
     }
 
     return (

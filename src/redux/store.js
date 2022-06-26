@@ -1,3 +1,6 @@
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const ON_TYPING_MESSAGE = 'ON_TYPING_MESSAGE'
+
 let store = {
     _state: {
         profile: {
@@ -73,7 +76,7 @@ let store = {
 
     dispatch(action) {
         switch (action.type) {
-            case 'SEND-MESSAGE':
+            case SEND_MESSAGE:
                 {
                 for (let i = 0; i < this.state.dialogs.chats.length; i++) {
                     if(this.state.dialogs.chats[i].path == action.cpi) {
@@ -86,7 +89,7 @@ let store = {
                 return 'Sent successfully!';
             }
                 break;
-            case 'ON-TYPING-MESSAGE':
+            case ON_TYPING_MESSAGE:
                 {
                 for (let i = 0; i < this.state.dialogs.chats.length; i++) {
                     if (this.state.dialogs.chats[i].path == action.cpi) {
@@ -99,6 +102,21 @@ let store = {
             }
                 break;
         }
+    }
+}
+
+export function sendMsgActionCreator(cpi, msg) {
+    return {
+        type: SEND_MESSAGE,
+        cpi,
+        msg
+    }
+}
+export function onTypingMsgActionCreator(cpi, msg) {
+    return {
+        type: ON_TYPING_MESSAGE,
+        cpi,
+        msg
     }
 }
 
