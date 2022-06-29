@@ -1,6 +1,6 @@
 import React from "react";
 import style from './ChatFooter.module.css'
-import {sendMsgActionCreator, onTypingMsgActionCreator} from "../../../../../redux/store";
+import {sendMsgActionCreator, onTypingMsgActionCreator} from "../../../../../redux/reducers/dialogs-reducer";
 
 const ChatFooter = (props) => {
 
