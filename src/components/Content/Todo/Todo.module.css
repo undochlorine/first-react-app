@@ -1,0 +1,41 @@
+.Main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.Main > * {
+    width: 70%;
+}
+.header p {
+    font-size: 30px;
+    text-align: center;
+}
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    margin-bottom: 30px;
+}
+.input input {
+    width: 100%;
+    height: 45px;
+    border-radius: 18px;
+    padding: 6px;
+    border: none;
+    font-size: 20px;
+}
+.input input::placeholder {padding: 6px}
+.input svg {
+    width: 60px;
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+.content {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+    overflow-y: scroll;
+}

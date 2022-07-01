@@ -1,0 +1,13 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item svg {
+    cursor: pointer;
+    width: 30px;
+    aspect-ratio: 1;
+}
+.item li {
+    word-break: break-word;
+}
