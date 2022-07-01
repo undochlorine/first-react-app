@@ -33,6 +33,17 @@
     aspect-ratio: 1;
     cursor: pointer;
 }
+.input svg:active {
+    animation: rotateAdd .25s ease-in-out;
+}
+@keyframes rotateAdd {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
 .content {
     display: flex;
     flex-direction: column-reverse;
