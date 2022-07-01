@@ -15,7 +15,16 @@ function todoReducer(state=startState, action={}) {
             state.todoInput = action.inp
         }; break;
         case ADD_TODO: {
-            let prevId = state.todos[state.todos.length - 1].id;
+            let prevId;
+            // state.todos[state.todos.length - 1].id;
+            for(let i = state.todos.length - 1; i > -1; i--) {
+                if(state.todos[i]) {
+                    prevId = i
+                    break;
+                }
+            }
+            if(!prevId)
+                prevId = 0;
             state.todos.push({
                 id: prevId+1,
                 task: action.task
