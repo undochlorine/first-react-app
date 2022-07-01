@@ -6,6 +6,8 @@ const ChatFooter = (props) => {
 
     const input = React.createRef();
 
+    const isEnter = (e) => e.code === 'Enter' ? sendMsg() : '';
+
     function sendMsg() {
         let msg = input.current.value;
         if (msg !== '')
@@ -29,6 +31,7 @@ const ChatFooter = (props) => {
     return (
         <div className={style.Main}>
             <input
+                onKeyDown={isEnter}
                 type="text"
                 ref={input}
                 onChange={onTypingMsg}
