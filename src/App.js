@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Content/Profile/Profile';
 import Dialogs from "./components/Content/Dialogs/Dialogs";
 import Music from "./components/Content/Music/Music";
-import Todo from "./components/Content/Todo/Todo";
+import TodoContainer from "./components/Content/Todo/TodoContainer";
 import {Route, Routes} from "react-router-dom";
 
 function App(props) {
@@ -40,10 +40,7 @@ function App(props) {
                   />
                   <Route
                       path="/todo/*"
-                      element={<Todo
-                                    state={props.state.todo}
-                                    dispatch={props.dispatch}
-                                />}
+                      element={<TodoContainer />}
                   />
               </Routes>
           </div>

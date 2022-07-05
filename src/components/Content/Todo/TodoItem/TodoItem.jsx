@@ -1,10 +1,9 @@
 import React from "react";
 import style from './TodoItem.module.css';
-import {removeTodoActionCreator} from "../../../../redux/reducers/todo-reducer";
 
 const TodoItem = (props) => {
     function removeTask(e) {
-        props.dispatch(removeTodoActionCreator(props.id))
+        props.removeTodo(props.id)
     }
 
     return(

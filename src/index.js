@@ -7,7 +7,7 @@ import App from "./App";
 import store from "./redux/redux-store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-function renderEntireDom(state) {
+function renderEntireDom(state={}) {
     root.render(
         <React.StrictMode>
             <BrowserRouter>

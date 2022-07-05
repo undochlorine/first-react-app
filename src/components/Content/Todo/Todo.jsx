@@ -1,7 +1,6 @@
 import React from "react";
 import style from './Todo.module.css'
-import TodoItem from "./TodoItem/TodoItem";
-import {addTodoActionCreator, onTodoTypingActionCreator} from "../../../redux/reducers/todo-reducer";
+import TodoItemContainer from "./TodoItem/TodoItemContainer";
 
 const Todo = (props) => {
 
@@ -11,15 +10,13 @@ const Todo = (props) => {
 
     function onTodoTyping() {
         let inp = input.current.value;
-        props.dispatch(onTodoTypingActionCreator(inp))
+        props.onTodoTyping(inp)
     }
 
     function addTask() {
         let task = input.current.value;
-        props.dispatch(addTodoActionCreator(task));
+        props.addTodo(task)
     }
-
-    let todos = props.state.todos;
 
     return(
         <div className={style.Main}>
@@ -38,8 +35,8 @@ const Todo = (props) => {
             </div>
             <div className={style.content}>
                 {
-                    todos.map(todo =>
-                            todo.task ? <TodoItem id={todo.id} task={todo.task} dispatch={props.dispatch} /> : ''
+                    props.state.todos.map(todo =>
+                            todo.task ? <TodoItemContainer id={todo.id} task={todo.task} /> : ''
                     )
                 }
             </div>
