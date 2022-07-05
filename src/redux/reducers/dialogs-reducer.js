@@ -61,7 +61,10 @@ function dialogsReducer(state = startState, action={}) {
         case SEND_MESSAGE:
             for (let i = 0; i < state.chats.length; i++) {
                 if (state.chats[i].path === action.cpi) {
-                    state.chats[i].chat_history.push({message: action.msg, from: 'me'})
+                    state.chats[i].chat_history.push({
+                        message: state.chats[i].typingMsg,
+                        from: 'me'
+                    })
                     state.chats[i].typingMsg = '';
                     break;
                 }
@@ -84,11 +87,10 @@ function dialogsReducer(state = startState, action={}) {
 
 export default dialogsReducer;
 
-export function sendMsgActionCreator(cpi, msg) {
+export function sendMsgActionCreator(cpi) {
     return {
         type: SEND_MESSAGE,
-        cpi,
-        msg
+        cpi
     }
 }
 export function onTypingMsgActionCreator(cpi, msg) {
