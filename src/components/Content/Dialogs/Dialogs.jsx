@@ -3,7 +3,7 @@ import style from './Dialogs.module.css'
 import Chat_partner from "./Chat_partner/Chat_partner"
 import {Route, Routes} from "react-router-dom";
 import Chat from './Dialog/Chat/Chat'
-import ChatFooter from './Dialog/ChatFooter/ChatFooter'
+import ChatFooterContainer from './Dialog/ChatFooter/ChatFooterContainer'
 
 const Dialogs = (props) => {
     return (
@@ -29,10 +29,9 @@ const Dialogs = (props) => {
                                     path={c.path}
                                     element={[
                                         <Chat chat_history={c.chat_history} />,
-                                        <ChatFooter
+                                        <ChatFooterContainer
                                             path={c.path}
                                             typingMsg={c.typingMsg}
-                                            dispatch={props.dispatch}
                                         />
                                     ]}
                                 />)
