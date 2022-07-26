@@ -8,7 +8,7 @@ const ChatFooter = (props) => {
     const isEnter = (e) => e.code === 'Enter' ? sendMsg() : '';
 
     function sendMsg() {
-        props.sendMsg()
+        props.sendMsg(props.state)
     }
     function onTypingMsg() {
         let msg = input.current.value;

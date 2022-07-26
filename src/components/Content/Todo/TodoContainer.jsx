@@ -1,27 +1,24 @@
-import React from "react";
 import {addTodoActionCreator, onTodoTypingActionCreator} from "../../../redux/reducers/todo-reducer";
 import Todo from "./Todo";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
-const TodoContainer = () => {
-    return <StoreContext.Consumer>
-        {store => {
-            function onTodoTyping(inp) {
-                store.dispatch(onTodoTypingActionCreator(inp))
-            }
-
-            function addTodo(todo) {
-                store.dispatch(addTodoActionCreator(todo));
-            }
-
-            return <Todo
-                onTodoTyping={onTodoTyping}
-                addTodo={addTodo}
-                state={store.getState().todo}
-            />
-        }
-        }
-    </StoreContext.Consumer>
+function mapStateToProps(state) {
+    return {
+        state: state.todo
+    }
 }
+function mapDispatchTopProps(dispatch) {
+    function onTodoTyping(inp) {
+        dispatch(onTodoTypingActionCreator(inp))
+    }
+    function addTodo(todo) {
+        dispatch(addTodoActionCreator(todo));
+    }
+    return {
+        onTodoTyping,
+        addTodo
+    }
+}
+const TodoContainer = connect(mapStateToProps, mapDispatchTopProps)(Todo)
 
 export default TodoContainer;

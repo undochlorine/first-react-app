@@ -1,23 +1,21 @@
-import React from "react";
 import {removeTodoActionCreator} from "../../../../redux/reducers/todo-reducer";
 import TodoItem from "./TodoItem";
-import StoreContext from "../../../../StoreContext";
+import {connect} from "react-redux";
 
-const TodoItemContainer = (props) => {
-    return <StoreContext.Consumer>
-        {store => {
-            function removeTodo(id) {
-                store.dispatch(removeTodoActionCreator(id))
-            }
-
-            return <TodoItem
-                id={props.id}
-                task={props.task}
-                removeTodo={removeTodo}
-            />
-        }
-        }
-    </StoreContext.Consumer>
+function mapStateToProps() {
+    return {}
 }
+function mapDispatchToProps(dispatch, props) {
+    function removeTodo(id) {
+        dispatch(removeTodoActionCreator(id))
+    }
+    return {
+        removeTodo,
+        id: props.id,
+        task: props.task
+    }
+}
+
+const TodoItemContainer = connect(mapStateToProps, mapDispatchToProps)(TodoItem)
 
 export default TodoItemContainer;

@@ -11,36 +11,49 @@ const ON_TODO_TYPING = 'ON_TODO_TYPING';
 
 function todoReducer(state=startState, action={}) {
     switch (action.type) {
-        case ON_TODO_TYPING: {
-            state.todoInput = action.inp
-        }; break;
+        case ON_TODO_TYPING:
+            return {
+                ...state,
+                todoInput: action.inp
+            }
+        break;
         case ADD_TODO: {
+            const stateCopy = {
+                ...state,
+                todos: [ ...state.todos ]
+            }
             let prevId;
-            // state.todos[state.todos.length - 1].id;
-            for(let i = state.todos.length - 1; i > -1; i--) {
-                if(state.todos[i]) {
+            // stateCopy.todos[stateCopy.todos.length - 1].id;
+            for(let i = stateCopy.todos.length - 1; i > -1; i--) {
+                if(stateCopy.todos[i]) {
                     prevId = i
                     break;
                 }
             }
             if(!prevId)
                 prevId = 0;
-            state.todos.push({
-                id: prevId+1,
-                task: action.task
-            });
-            state.todoInput = '';
+            return {
+                ...stateCopy,
+                todos: [ ...stateCopy.todos,  {
+                    id: prevId+1,
+                    task: action.task
+                } ],
+                todoInput: ''
+            }
         }; break;
         case REMOVE_TODO: {
-            state.todos = state.todos.map(t =>
-                t.id === action.id ? '' : t
-            )
+            return {
+                ...state,
+                todos: [
+                    ...state.todos.map(t =>
+                        t.id === action.id ? '' : t
+                    )
+                ]
+            }
         }; break;
         default:
             return state;
     }
-
-    return state;
 }
 
 export default todoReducer;
