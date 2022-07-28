@@ -61,19 +61,19 @@ function dialogsReducer(state = startState, action={}) {
         case SEND_MESSAGE: {
             const stateCopy = {
                 ...state,
-                chats: [ ...state.chats ],
+                chats: [...state.chats]
             }
-            for (let i in stateCopy.chats) {
-                stateCopy.chats[i] = { ...state.chats[i] }
-                stateCopy.chats[i].chat_history = { ...state.chats[i].chat_history }
-            }
-
             for (let i = 0; i < stateCopy.chats.length; i++) {
                 if (stateCopy.chats[i].path === action.cpi) {
-                    stateCopy.chats[i].chat_history.push({
-                        message: stateCopy.chats[i].typingMsg,
-                        from: 'me'
-                    })
+                    stateCopy.chats = [ ...state.chats ]
+                    stateCopy.chats[i] = { ...state.chats[i] }
+                    stateCopy.chats[i].chat_history = [
+                        ...state.chats[i].chat_history,
+                        {
+                            message: stateCopy.chats[i].typingMsg,
+                            from: 'me'
+                        }
+                    ]
                     stateCopy.chats[i].typingMsg = '';
                     break;
                 }
@@ -82,17 +82,6 @@ function dialogsReducer(state = startState, action={}) {
         }
             break;
         case ON_TYPING_MESSAGE: {
-            /*const stateCopy = {
-                ...state,
-                chats: [...state.chats]
-            }
-            for (let i = 0; i < stateCopy.chats.length; i++) {
-                if (stateCopy.chats[i].path === action.cpi) {
-                    stateCopy.chats[i].typingMsg = action.msg;
-                    break;
-                }
-            }
-            return stateCopy*/
             return {
                 ...state,
                 chats: state.chats.map(chat => {

@@ -1,10 +1,10 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Content/Profile/Profile';
-import Dialogs from "./components/Content/Dialogs/Dialogs";
-import Music from "./components/Content/Music/Music";
 import TodoContainer from "./components/Content/Todo/TodoContainer";
 import {Route, Routes} from "react-router-dom";
+import DialogsContainer from "./components/Content/Dialogs/DialogsContainer";
+import MusicContainer from "./components/Content/Music/MusicContainer";
+import ProfileContainer from "./components/Content/Profile/ProfileContainer";
 
 function App(props) {
   return (
@@ -15,27 +15,19 @@ function App(props) {
               <Routes>
                   <Route
                       exact path="/"
-                      element={<Profile
-                                    state={props.state.profile}
-                                />}
+                      element={<ProfileContainer />}
                   />
                   <Route
                       path="/profile/*"
-                      element={<Profile
-                                    state={props.state.profile}
-                                />}
+                      element={<ProfileContainer />}
                   />
                   <Route
                       path="/dialogs/*"
-                      element={<Dialogs
-                                    state={props.state.dialogs}
-                                />}
+                      element={<DialogsContainer />}
                   />
                   <Route
                       path="/music/*"
-                      element={<Music
-                                    state={props.state.music}
-                                />}
+                      element={<MusicContainer />}
                   />
                   <Route
                       path="/todo/*"

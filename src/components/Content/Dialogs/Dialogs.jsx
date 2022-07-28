@@ -10,7 +10,7 @@ const Dialogs = (props) => {
         <div className={style.Main}>
             <div className={style.collocutors}>
                 {
-                    props.state.chat_partners.map(cp => {
+                    props.chat_partners.map(cp => {
                         return (
                             <Chat_partner
                                 id={cp.id}
@@ -23,7 +23,7 @@ const Dialogs = (props) => {
             <div className={style.dialog}>
                 <Routes>
                     {
-                        props.state.chats.map(c => {
+                        props.chats.map(c => {
                             return (
                                 <Route
                                     path={c.path}
@@ -31,7 +31,6 @@ const Dialogs = (props) => {
                                         <Chat chat_history={c.chat_history} />,
                                         <ChatFooterContainer
                                             path={c.path}
-                                            typingMsg={c.typingMsg}
                                         />
                                     ]}
                                 />)
