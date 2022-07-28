@@ -28,7 +28,8 @@ const Todo = (props) => {
 
     function addTask() {
         let task = input.current.value;
-        props.addTodo(task)
+        if(task.trim())
+            props.addTodo(task)
     }
 
     return(
