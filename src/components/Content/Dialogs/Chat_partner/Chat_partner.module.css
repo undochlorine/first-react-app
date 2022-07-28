@@ -18,6 +18,10 @@
     display: flex;
     flex-direction: column;
 }
+.last {
+    color: #434343;
+    font-weight: 100;
+}
 .name {
     width: max-content;
 }

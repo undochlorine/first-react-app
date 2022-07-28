@@ -10,13 +10,15 @@ const Dialogs = (props) => {
         <div className={style.Main}>
             <div className={style.collocutors}>
                 {
-                    props.chat_partners.map(cp => {
+                    props.chat_partners.map((cp, index) => {
                         return (
                             <Chat_partner
                                 id={cp.id}
                                 name={cp.name}
                                 avatar={cp.avatar}
                                 key={cp.id}
+                                fromMe={'me' === [...props.chats[index].chat_history].reverse()[0].from}
+                                lastMsg={[...props.chats[index].chat_history].reverse()[0].message}
                             />)
                     })
                 }
