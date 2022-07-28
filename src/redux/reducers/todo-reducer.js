@@ -45,9 +45,7 @@ function todoReducer(state=startState, action={}) {
             return {
                 ...state,
                 todos: [
-                    ...state.todos.map(t =>
-                        t.id === action.id ? '' : t
-                    )
+                    ...state.todos.filter(t => t.id !== action.id)
                 ]
             }
         }; break;
