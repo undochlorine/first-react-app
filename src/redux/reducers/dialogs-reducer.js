@@ -92,7 +92,6 @@ function dialogsReducer(state = startState, action={}) {
             }
             return stateCopy
         }
-            break;
         case ON_TYPING_MESSAGE: {
             return {
                 ...state,
@@ -108,7 +107,6 @@ function dialogsReducer(state = startState, action={}) {
                 }),
             }
         }
-            break;
         default:
             return state;
     }

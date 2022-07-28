@@ -16,7 +16,6 @@ function todoReducer(state=startState, action={}) {
                 ...state,
                 todoInput: action.inp
             }
-        break;
         case ADD_TODO: {
             const stateCopy = {
                 ...state,
@@ -40,7 +39,7 @@ function todoReducer(state=startState, action={}) {
                 } ],
                 todoInput: ''
             }
-        }; break;
+        }
         case REMOVE_TODO: {
             return {
                 ...state,
@@ -48,7 +47,7 @@ function todoReducer(state=startState, action={}) {
                     ...state.todos.filter(t => t.id !== action.id)
                 ]
             }
-        }; break;
+        }
         default:
             return state;
     }
