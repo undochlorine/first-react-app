@@ -20,33 +20,34 @@ const startState = {
         {
             path: "/1",
             chat_history: [
-                {message: "Hi, are you already at home?", from: 'me'},
-                {message: "Yeah. I'm at home since 2.AM", from: 'them'},
-                {message: "So, what are u gonna do now?", from: 'me'},
-                {message: "I feel like sleepin'. Prolly I gonna have nap.", from: 'them'}
+                {id: 0, message: "Hi, are you already at home?", from: 'me'},
+                {id: 1, message: "Yeah. I'm at home since 2.AM", from: 'them'},
+                {id: 2, message: "So, what are u gonna do now?", from: 'me'},
+                {id: 3, message: "I feel like sleepin'. Prolly I gonna have nap.", from: 'them'}
             ],
             typingMsg: ''
         },
         {
             path: "/2",
             chat_history: [
-                {message: "Please don't fire me!", from: 'me'},
-                {message: "Pleeeeease", from: 'me'},
-                {message: "I'm beggin'", from: 'me'},
-                {message: "Ha, pathetic", from: 'them'}
+                {id: 0, message: "Please don't fire me!", from: 'me'},
+                {id: 1, message: "Pleeeeease", from: 'me'},
+                {id: 2, message: "I'm beggin'", from: 'me'},
+                {id: 3, message: "Ha, pathetic", from: 'them'}
             ],
             typingMsg: ''
         },
         {
             path: "/3",
             chat_history: [
-                {message: "You know what? That joke insulted me and you didn't even notice that!", from: 'them'},
-                {message: "I suppose we should take a break in our relationship, sorry..", from: 'them'},
+                {id: 0, message: "You know what? That joke insulted me and you didn't even notice that!", from: 'them'},
+                {id: 1, message: "I suppose we should take a break in our relationship, sorry..", from: 'them'},
                 {
+                    id: 2,
                     message: "I'm really sorry but I respect your wish. Are u gonna remove me from the friends list?",
                     from: 'me'
                 },
-                {message: "I'm not 7, sure I ain't", from: 'them'}
+                {id: 3, message: "I'm not 7, sure I ain't", from: 'them'}
             ],
             typingMsg: ''
         }
@@ -63,6 +64,16 @@ function dialogsReducer(state = startState, action={}) {
                 ...state,
                 chats: [...state.chats]
             }
+            let current_chat = {};
+            for (const chat of stateCopy.chats) {
+                if(chat.path === action.cpi) {
+                    current_chat = chat;
+                    break;
+                }
+            }
+            //spread is used to prevent mutating original array
+            let prevId = [...current_chat.chat_history].reverse()[0].id;
+
             for (let i = 0; i < stateCopy.chats.length; i++) {
                 if (stateCopy.chats[i].path === action.cpi) {
                     stateCopy.chats = [ ...state.chats ]
@@ -70,6 +81,7 @@ function dialogsReducer(state = startState, action={}) {
                     stateCopy.chats[i].chat_history = [
                         ...state.chats[i].chat_history,
                         {
+                            id: prevId+1,
                             message: stateCopy.chats[i].typingMsg,
                             from: 'me'
                         }

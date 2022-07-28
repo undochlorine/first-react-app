@@ -3,7 +3,7 @@ import style from './Chat.module.css'
 import {Profiler} from "react";
 
 const Chat = (props) => {
-    const messages_jsx = props.chat_history.map(obj => <div className={style[obj.from]}><p>{obj.message}</p></div>);
+    const messages_jsx = props.chat_history.map(obj => <div className={style[obj.from]} key={obj.id}><p>{obj.message}</p></div>);
     // document.querySelector('.' + style.Main).scrollTo({ bottom: 0 });
 
     const messages = React.createRef()

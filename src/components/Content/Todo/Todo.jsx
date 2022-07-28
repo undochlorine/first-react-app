@@ -50,7 +50,7 @@ const Todo = (props) => {
                 <div className={style.content} ref={todosEl}>
                     {
                         props.state.todos.map(todo =>
-                            todo.task ? <TodoItemContainer id={todo.id} task={todo.task} /> : ''
+                            todo.task ? <TodoItemContainer id={todo.id} key={todo.id} task={todo.task} /> : ''
                         )
                     }
                 </div>

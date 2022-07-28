@@ -16,7 +16,7 @@ const Profile = (props) => {
                 </div>
                 <div className={style.gallery}>
                     {
-                        props.images.map(i => <img src={i.src} alt={i.alt} />)
+                        props.images.map(i => <img src={i.src} alt={i.alt} key={i.id} />)
                     }
                 </div>
             </div>

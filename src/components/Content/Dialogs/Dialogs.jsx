@@ -16,6 +16,7 @@ const Dialogs = (props) => {
                                 id={cp.id}
                                 name={cp.name}
                                 avatar={cp.avatar}
+                                key={cp.id}
                             />)
                     })
                 }
@@ -23,14 +24,16 @@ const Dialogs = (props) => {
             <div className={style.dialog}>
                 <Routes>
                     {
-                        props.chats.map(c => {
+                        props.chats.map((c, index) => {
                             return (
                                 <Route
                                     path={c.path}
+                                    key={index}
                                     element={[
-                                        <Chat chat_history={c.chat_history} />,
+                                        <Chat key={c.path} chat_history={c.chat_history} />,
                                         <ChatFooterContainer
                                             path={c.path}
+                                            key={c.path.replace('/', '')}
                                         />
                                     ]}
                                 />)
