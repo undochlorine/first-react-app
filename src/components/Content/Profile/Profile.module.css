@@ -4,6 +4,10 @@
     gap: 30px;
     width: 100%;
 }
+.bio p,
+.title p {
+    color: #212121;
+}
 .header {
     display: grid;
     grid-template-columns: 1fr 5fr;

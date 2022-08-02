@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Content/Dialogs/DialogsContainer";
 import MusicContainer from "./components/Content/Music/MusicContainer";
 import ProfileContainer from "./components/Content/Profile/ProfileContainer";
+import UsersListContainer from './components/Content/UsersList/UsersListContainer'
 
 function App(props) {
   return (
@@ -32,6 +33,10 @@ function App(props) {
                   <Route
                       path="/todo/*"
                       element={<TodoContainer />}
+                  />
+                  <Route
+                      path="/users/*"
+                      element={<UsersListContainer />}
                   />
               </Routes>
           </div>

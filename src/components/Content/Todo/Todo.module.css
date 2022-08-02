@@ -5,6 +5,9 @@
     align-items: center;
     gap: 20px;
 }
+.header p {
+    color: #212121;
+}
 .Main > * {
     width: 70%;
 }
