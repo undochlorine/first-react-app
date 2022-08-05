@@ -1,5 +1,11 @@
 import React from "react";
-import {friendAC, unfriendAC, addUsersAC} from "../../../redux/reducers/users-list-reducer";
+import {
+    friendAC,
+    unfriendAC,
+    addUsersAC,
+    setLoadingAC,
+    stopLoadingAC
+} from "../../../redux/reducers/users-list-reducer";
 import {connect} from "react-redux";
 import UsersList from "./UsersList";
 
@@ -8,9 +14,11 @@ class UsersListContainer extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if (this.props.users.length === 0) {
-            this.props.addUsers(0, 2)
+            this.props.setLoading()
+            await this.props.addUsers(0, 2)
+            this.props.stopLoading()
         }
     }
 
@@ -24,8 +32,10 @@ class UsersListContainer extends React.Component {
         return max;
     }
 
-    addMore = () => {
-        this.props.addUsers(this.maxId(), 2)
+    addMore = async () => {
+        this.props.setLoading()
+        await this.props.addUsers(this.maxId(), 2)
+        this.props.stopLoading()
     }
 
     switchFriendState = ({state, id}) => {
@@ -42,11 +52,12 @@ class UsersListContainer extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <UsersList
                 users={this.props.users}
                 switchFriendState={this.switchFriendState}
                 addMore={this.addMore}
+                isFetching={this.props.isFetching}
             />
         )
     }
@@ -54,23 +65,28 @@ class UsersListContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        users: state.usersList.users
+        users: state.usersList.users,
+        isFetching: state.usersList.isFetching
     }
 }
+
 function mapDispatchToProps(dispatch) {
-    async function addUsers(maxId=0, limit=1) {
+    async function addUsers(maxId = 0, limit = 1) {
         try {
             const usersData = await fetch(`http://localhost:5000/users/${maxId}/${limit}`)
             const users = await usersData.json()
             dispatch(addUsersAC(users))
-        } catch(e) {
+        } catch (e) {
             console.error(e.message)
         }
     }
+
     return {
         friend: (id) => dispatch(friendAC(id)),
         unfriend: (id) => dispatch(unfriendAC(id)),
-        addUsers
+        addUsers,
+        setLoading: () => dispatch(setLoadingAC()),
+        stopLoading: () => dispatch(stopLoadingAC())
     }
 }
 

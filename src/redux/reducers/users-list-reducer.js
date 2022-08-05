@@ -1,10 +1,13 @@
 const startState = {
-    users: []
+    users: [],
+    isFetching: false
 };
 
 const FRIEND = 'FRIEND';
 const UNFRIEND = 'UNFRIEND';
 const ADD_USERS = 'ADD_USERS';
+const SET_LOADING = 'SET_LOADING';
+const STOP_LOADING = 'STOP_LOADING';
 
 
 function usersListReducer(state=startState, action={}) {
@@ -32,6 +35,16 @@ function usersListReducer(state=startState, action={}) {
                 ...state,
                 users: [...state.users].concat(action.users)
             }
+        case SET_LOADING:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case STOP_LOADING:
+            return {
+                ...state,
+                isFetching: false
+            }
         default:
             return state;
     }
@@ -42,3 +55,5 @@ export default usersListReducer
 export const friendAC = (id) => ({type: FRIEND, id})
 export const unfriendAC = (id) => ({type: UNFRIEND, id})
 export const addUsersAC = (users=[]) => ({type: ADD_USERS, users})
+export const setLoadingAC = () => ({type: SET_LOADING})
+export const stopLoadingAC = () => ({type: STOP_LOADING})

@@ -2,6 +2,7 @@ import React from "react";
 import style from './styles/UsersList.module.css'
 import showMoreStyle from './styles/showMore.module.css'
 import friendStyle from './styles/friend.module.css'
+import Loading from "../../Assets/Loading/Loading";
 
 const UsersList = (props) => {
     return (
@@ -35,17 +36,20 @@ const UsersList = (props) => {
                         </div>
                     )
                 })}
-                <div className={showMoreStyle}>
-                    <button
-                        className={showMoreStyle.showMoreBtn}
-                        onClick={props.addMore}
-                    >
-                        <span className={showMoreStyle.showMoreSpan}></span>
-                        <span className={showMoreStyle.showMoreSpan}></span>
-                        <span className={showMoreStyle.showMoreSpan}></span>
-                        <span className={showMoreStyle.showMoreSpan}></span>Show more
-                    </button>
-                </div>
+                {props.isFetching
+                    ?   <Loading />
+                    :   <div className={showMoreStyle}>
+                            <button
+                                className={showMoreStyle.showMoreBtn}
+                                onClick={props.addMore}
+                            >
+                                <span className={showMoreStyle.showMoreSpan}></span>
+                                <span className={showMoreStyle.showMoreSpan}></span>
+                                <span className={showMoreStyle.showMoreSpan}></span>
+                                <span className={showMoreStyle.showMoreSpan}></span>Show more
+                            </button>
+                        </div>
+                }
             </div>
         </div>
     )

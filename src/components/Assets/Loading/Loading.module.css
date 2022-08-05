@@ -1,0 +1,25 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    max-height: 200px;
+    align-items: center;
+    gap: 15px;
+}
+.loader > img {
+    max-width: 100px;
+    max-height: 150px;
+    animation: rotateLoader 6s linear infinite;
+}
+.loader > p {
+    font-size: 23px;
+    letter-spacing: 5px;
+}
+@keyframes rotateLoader {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
