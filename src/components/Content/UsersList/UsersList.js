@@ -4,11 +4,11 @@ import showMoreStyle from './styles/showMore.module.css'
 import friendStyle from './styles/friend.module.css'
 
 class UsersList extends React.Component {
-
     constructor(props) {
         super(props);
-        //initial users batch
-        if(props.users.length === 0) {
+    }
+    componentDidMount() {
+        if(this.props.users.length === 0) {
             this.props.addUsers(0, 2)
         }
     }
