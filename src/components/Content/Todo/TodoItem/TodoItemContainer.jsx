@@ -1,4 +1,4 @@
-import {removeTodoActionCreator} from "../../../../redux/reducers/todo-reducer";
+import {removeTodo as removeTodoActionCreator} from "../../../../redux/reducers/todo-reducer";
 import TodoItem from "./TodoItem";
 import {connect} from "react-redux";
 

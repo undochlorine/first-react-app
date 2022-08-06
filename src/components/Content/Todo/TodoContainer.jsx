@@ -1,4 +1,4 @@
-import {addTodoActionCreator, onTodoTypingActionCreator} from "../../../redux/reducers/todo-reducer";
+import {addTodo, onTodoTyping} from "../../../redux/reducers/todo-reducer";
 import Todo from "./Todo";
 import {connect} from "react-redux";
 
@@ -7,18 +7,7 @@ function mapStateToProps(state) {
         state: state.todo
     }
 }
-function mapDispatchTopProps(dispatch) {
-    function onTodoTyping(inp) {
-        dispatch(onTodoTypingActionCreator(inp))
-    }
-    function addTodo(todo) {
-        dispatch(addTodoActionCreator(todo));
-    }
-    return {
-        onTodoTyping,
-        addTodo
-    }
-}
-const TodoContainer = connect(mapStateToProps, mapDispatchTopProps)(Todo)
+
+const TodoContainer = connect(mapStateToProps, {addTodo, onTodoTyping})(Todo)
 
 export default TodoContainer;

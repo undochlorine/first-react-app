@@ -1,10 +1,10 @@
 import React from "react";
 import {
-    friendAC,
-    unfriendAC,
-    addUsersAC,
-    setLoadingAC,
-    stopLoadingAC
+    friend as friendAC,
+    unfriend as unfriendAC,
+    addUsers as addUsersAC,
+    setLoading as setLoadingAC,
+    stopLoading as stopLoadingAC
 } from "../../../redux/reducers/users-list-reducer";
 import {connect} from "react-redux";
 import UsersList from "./UsersList";

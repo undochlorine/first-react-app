@@ -1,4 +1,4 @@
-import {onTypingMsgActionCreator, sendMsgActionCreator} from "../../../../../redux/reducers/dialogs-reducer";
+import {onTypingMsg as onTypingMsgActionCreator, sendMsg as sendMsgActionCreator} from "../../../../../redux/reducers/dialogs-reducer";
 import ChatFooter from "./ChatFooter";
 import {connect} from "react-redux";
 

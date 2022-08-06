@@ -52,8 +52,8 @@ function usersListReducer(state=startState, action={}) {
 
 export default usersListReducer
 
-export const friendAC = (id) => ({type: FRIEND, id})
-export const unfriendAC = (id) => ({type: UNFRIEND, id})
-export const addUsersAC = (users=[]) => ({type: ADD_USERS, users})
-export const setLoadingAC = () => ({type: SET_LOADING})
-export const stopLoadingAC = () => ({type: STOP_LOADING})
+export const friend = (id) => ({type: FRIEND, id})
+export const unfriend = (id) => ({type: UNFRIEND, id})
+export const addUsers = (users=[]) => ({type: ADD_USERS, users})
+export const setLoading = () => ({type: SET_LOADING})
+export const stopLoading = () => ({type: STOP_LOADING})

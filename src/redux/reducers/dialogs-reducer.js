@@ -114,13 +114,13 @@ function dialogsReducer(state = startState, action={}) {
 
 export default dialogsReducer;
 
-export function sendMsgActionCreator(cpi) {
+export function sendMsg(cpi) {
     return {
         type: SEND_MESSAGE,
         cpi
     }
 }
-export function onTypingMsgActionCreator(cpi, msg) {
+export function onTypingMsg(cpi, msg) {
     return {
         type: ON_TYPING_MESSAGE,
         cpi,

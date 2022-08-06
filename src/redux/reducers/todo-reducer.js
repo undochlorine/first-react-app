@@ -55,21 +55,21 @@ function todoReducer(state=startState, action={}) {
 
 export default todoReducer;
 
-export function addTodoActionCreator(task) {
+export function addTodo(task) {
     return {
         type: ADD_TODO,
         task
     }
 }
 
-export function removeTodoActionCreator(id) {
+export function removeTodo(id) {
     return {
         type: REMOVE_TODO,
         id
     }
 }
 
-export function onTodoTypingActionCreator(inp) {
+export function onTodoTyping(inp) {
     return {
         type: ON_TODO_TYPING,
         inp
