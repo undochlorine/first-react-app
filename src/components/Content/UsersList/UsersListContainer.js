@@ -73,7 +73,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     async function addUsers(maxId = 0, limit = 1) {
         try {
-            const usersData = await fetch(`http://localhost:5000/users/${maxId}/${limit}`)
+            const usersData = await fetch(`https://camo-app.herokuapp.com/users/${maxId}/${limit}`)
             const users = await usersData.json()
             dispatch(addUsersAC(users))
         } catch (e) {
