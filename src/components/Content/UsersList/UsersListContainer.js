@@ -4,7 +4,8 @@ import {
     unfriend as unfriendAC,
     addUsers as addUsersAC,
     setLoading as setLoadingAC,
-    stopLoading as stopLoadingAC
+    stopLoading as stopLoadingAC,
+    switchAreThereMore
 } from "../../../redux/reducers/users-list-reducer";
 import {connect} from "react-redux";
 import UsersList from "./UsersList";
@@ -12,14 +13,6 @@ import UsersList from "./UsersList";
 class UsersListContainer extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    async componentDidMount() {
-        if (this.props.users.length === 0) {
-            this.props.setLoading()
-            await this.props.addUsers(0, 2)
-            this.props.stopLoading()
-        }
     }
 
     maxId = () => {
@@ -32,10 +25,10 @@ class UsersListContainer extends React.Component {
         return max;
     }
 
-    addMore = async () => {
-        this.props.setLoading()
-        await this.props.addUsers(this.maxId(), 2)
-        this.props.stopLoading()
+    async componentDidMount() {
+        if (this.props.users.length === 0) {
+            await this.props.addUsers(this.maxId(), 2, this.props.areThereMore)
+        }
     }
 
     switchFriendState = ({state, id}) => {
@@ -56,8 +49,9 @@ class UsersListContainer extends React.Component {
             <UsersList
                 users={this.props.users}
                 switchFriendState={this.switchFriendState}
-                addMore={this.addMore}
+                addMore={() => this.props.addUsers(this.maxId(), 2, this.props.areThereMore)}
                 isFetching={this.props.isFetching}
+                areThereMore={this.props.areThereMore}
             />
         )
     }
@@ -66,27 +60,53 @@ class UsersListContainer extends React.Component {
 function mapStateToProps(state) {
     return {
         users: state.usersList.users,
-        isFetching: state.usersList.isFetching
+        isFetching: state.usersList.isFetching,
+        areThereMore: state.usersList.areThereMore
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    async function addUsers(maxId = 0, limit = 1) {
+    function setLoading() {
+        dispatch(setLoadingAC())
+    }
+    function stopLoading() {
+        dispatch(stopLoadingAC())
+    }
+    async function fetchAreThereMore(maxId, current) {
         try {
-            const usersData = await fetch(`https://camo-app.herokuapp.com/users/${maxId}/${limit}`)
+            const usersData = await fetch(`https://camo-app.herokuapp.com/users/${maxId}/1`)
             const users = await usersData.json()
-            dispatch(addUsersAC(users))
+            if(current === true && users[0] === undefined) {
+                dispatch(switchAreThereMore(false))
+            } else if(current === false && users[0] !== undefined) {
+                dispatch(switchAreThereMore(true))
+            }
+            return users[0] !== undefined
         } catch (e) {
             console.error(e.message)
+        }
+    }
+    async function addUsers(maxId = 0, limit = 1, currentATMState) {
+        try {
+            setLoading()
+            const areThereMore = await fetchAreThereMore(maxId, currentATMState)
+            if(areThereMore) {
+                const usersData = await fetch(`https://camo-app.herokuapp.com/users/${maxId}/${limit}`)
+                const users = await usersData.json()
+                dispatch(addUsersAC(users))
+                await fetchAreThereMore(maxId + limit, currentATMState)
+            }
+        } catch (e) {
+            console.error(e.message)
+        } finally {
+            stopLoading()
         }
     }
 
     return {
         friend: (id) => dispatch(friendAC(id)),
         unfriend: (id) => dispatch(unfriendAC(id)),
-        addUsers,
-        setLoading: () => dispatch(setLoadingAC()),
-        stopLoading: () => dispatch(stopLoadingAC())
+        addUsers
     }
 }
 

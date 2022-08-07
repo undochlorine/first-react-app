@@ -1,6 +1,7 @@
 const startState = {
     users: [],
-    isFetching: false
+    isFetching: false,
+    areThereMore: false
 };
 
 const FRIEND = 'FRIEND';
@@ -8,6 +9,7 @@ const UNFRIEND = 'UNFRIEND';
 const ADD_USERS = 'ADD_USERS';
 const SET_LOADING = 'SET_LOADING';
 const STOP_LOADING = 'STOP_LOADING';
+const ARE_THERE_MORE = 'ARE_THERE_MORE';
 
 
 function usersListReducer(state=startState, action={}) {
@@ -45,6 +47,11 @@ function usersListReducer(state=startState, action={}) {
                 ...state,
                 isFetching: false
             }
+        case ARE_THERE_MORE:
+            return {
+                ...state,
+                areThereMore: action.boolState
+            }
         default:
             return state;
     }
@@ -57,3 +64,4 @@ export const unfriend = (id) => ({type: UNFRIEND, id})
 export const addUsers = (users=[]) => ({type: ADD_USERS, users})
 export const setLoading = () => ({type: SET_LOADING})
 export const stopLoading = () => ({type: STOP_LOADING})
+export const switchAreThereMore = (boolState) => ({type: ARE_THERE_MORE, boolState})

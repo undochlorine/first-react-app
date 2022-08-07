@@ -38,17 +38,19 @@ const UsersList = (props) => {
                 })}
                 {props.isFetching
                     ?   <Loading />
-                    :   <div className={showMoreStyle}>
-                            <button
-                                className={showMoreStyle.showMoreBtn}
-                                onClick={props.addMore}
-                            >
-                                <span className={showMoreStyle.showMoreSpan}></span>
-                                <span className={showMoreStyle.showMoreSpan}></span>
-                                <span className={showMoreStyle.showMoreSpan}></span>
-                                <span className={showMoreStyle.showMoreSpan}></span>Show more
-                            </button>
-                        </div>
+                    :   props.areThereMore
+                            ?   <div className={showMoreStyle}>
+                                    <button
+                                        className={showMoreStyle.showMoreBtn}
+                                        onClick={props.addMore}
+                                    >
+                                        <span className={showMoreStyle.showMoreSpan}></span>
+                                        <span className={showMoreStyle.showMoreSpan}></span>
+                                        <span className={showMoreStyle.showMoreSpan}></span>
+                                        <span className={showMoreStyle.showMoreSpan}></span>Show more
+                                    </button>
+                                </div>
+                            : null
                 }
             </div>
         </div>
