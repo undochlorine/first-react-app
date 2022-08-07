@@ -3,6 +3,7 @@ import style from './styles/UsersList.module.css'
 import showMoreStyle from './styles/showMore.module.css'
 import friendStyle from './styles/friend.module.css'
 import Loading from "../../Assets/Loading/Loading";
+import {NavLink} from "react-router-dom";
 
 const UsersList = (props) => {
     return (
@@ -11,9 +12,9 @@ const UsersList = (props) => {
                 {props.users.map(user => {
                     return (
                         <div className={style.user} key={user.id}>
-                            <div className={style.avatar}>
+                            <NavLink to={`/profile/${user.id}`} className={style.avatar}>
                                 <img src={user.avatar} alt="User avatar"/>
-                            </div>
+                            </NavLink>
                             <div className={style.info}>
                                 <div className={style.fullname}>
                                     <p>{user.name} {user.lastname}</p>

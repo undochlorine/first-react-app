@@ -1,27 +1,37 @@
 import React from "react";
 import style from './Profile.module.css'
+import Loading from "../../Assets/Loading/Loading";
 
 const Profile = (props) => {
-    return (
-        <div className={style.Main}>
-            <div className={style.header}>
-                <img src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-512.png" alt="avatar"/>
-                <div className={style.bio}>
-                    <p>Hi, I'm looking for a friends</p>
-                </div>
-            </div>
-            <div className={style.photos}>
-                <div className={style.title}>
-                    <p>My photos:</p>
-                </div>
-                <div className={style.gallery}>
-                    {
-                        props.images.map(i => <img src={i.src} alt={i.alt} key={i.id} />)
+    if(!props.user) {
+        return <div></div>
+    }
+    return props.loading
+            ?   <Loading />
+            :   <div className={style.Main}>
+                    <div className={style.header}>
+                        <div className={style.left}>
+                            <img src={props.user.avatar} alt="avatar"/>
+                            <p>{props.user.name} {props.user.lastname}</p>
+                        </div>
+                        <div className={style.bio}>
+                            <p>{props.user.status}</p>
+                        </div>
+                    </div>
+                    {props.user.album
+                        ?   <div className={style.photos}>
+                                <div className={style.title}>
+                                    <p>My photos:</p>
+                                </div>
+                                <div className={style.gallery}>
+                                    {
+                                        props.user.album.map((i, index) => <img src={i} alt="album item" key={index} className={style.albumItem} />)
+                                    }
+                                </div>
+                            </div>
+                        :   null
                     }
                 </div>
-            </div>
-        </div>
-    )
 }
 
 export default Profile;

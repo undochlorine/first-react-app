@@ -15,11 +15,16 @@ function App(props) {
           <div className="content">
               <Routes>
                   <Route
-                      exact path="/"
+                      exact
+                      path="/"
                       element={<ProfileContainer />}
                   />
                   <Route
-                      path="/profile/*"
+                      path="/profile"
+                      element={<ProfileContainer />}
+                  />
+                  <Route
+                      path="/profile/:id"
                       element={<ProfileContainer />}
                   />
                   <Route
