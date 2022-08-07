@@ -42,7 +42,7 @@ const UsersList = (props) => {
                             ?   <div className={showMoreStyle}>
                                     <button
                                         className={showMoreStyle.showMoreBtn}
-                                        onClick={props.addMore}
+                                        onClick={props.loadMoreUsers}
                                     >
                                         <span className={showMoreStyle.showMoreSpan}></span>
                                         <span className={showMoreStyle.showMoreSpan}></span>

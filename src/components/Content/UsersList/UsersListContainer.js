@@ -2,7 +2,7 @@ import React from "react";
 import {
     friend as friendAC,
     unfriend as unfriendAC,
-    addUsers as addUsersAC,
+    loadMoreUsers as loadMoreUsersAC,
     setLoading as setLoadingAC,
     stopLoading as stopLoadingAC,
     switchAreThereMore
@@ -27,7 +27,7 @@ class UsersListContainer extends React.Component {
 
     async componentDidMount() {
         if (this.props.users.length === 0) {
-            await this.props.addUsers(this.maxId(), 2, this.props.areThereMore)
+            await this.props.loadMoreUsers(this.maxId(), 2, this.props.areThereMore)
         }
     }
 
@@ -49,7 +49,7 @@ class UsersListContainer extends React.Component {
             <UsersList
                 users={this.props.users}
                 switchFriendState={this.switchFriendState}
-                addMore={() => this.props.addUsers(this.maxId(), 2, this.props.areThereMore)}
+                loadMoreUsers={() => this.props.loadMoreUsers(this.maxId(), 2, this.props.areThereMore)}
                 isFetching={this.props.isFetching}
                 areThereMore={this.props.areThereMore}
             />
@@ -86,14 +86,14 @@ function mapDispatchToProps(dispatch) {
             console.error(e.message)
         }
     }
-    async function addUsers(maxId = 0, limit = 1, currentATMState) {
+    async function loadMoreUsers(maxId = 0, limit = 1, currentATMState) {
         try {
             setLoading()
             const areThereMore = await fetchAreThereMore(maxId, currentATMState)
             if(areThereMore) {
                 const usersData = await fetch(`https://camo-app.herokuapp.com/users/${maxId}/${limit}`)
                 const users = await usersData.json()
-                dispatch(addUsersAC(users))
+                dispatch(loadMoreUsersAC(users))
                 await fetchAreThereMore(maxId + limit, currentATMState)
             }
         } catch (e) {
@@ -106,7 +106,7 @@ function mapDispatchToProps(dispatch) {
     return {
         friend: (id) => dispatch(friendAC(id)),
         unfriend: (id) => dispatch(unfriendAC(id)),
-        addUsers
+        loadMoreUsers
     }
 }
 
