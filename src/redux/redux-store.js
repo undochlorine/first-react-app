@@ -4,13 +4,15 @@ import dialogsReducer from "./reducers/dialogs-reducer";
 import musicReducer from "./reducers/music-reducer";
 import todoReducer from "./reducers/todo-reducer";
 import usersListReducer from "./reducers/users-list-reducer";
+import authReducer from "./reducers/auth-reducer";
 
 const reducers = combineReducers({
     profile: profileReducer,
     dialogs: dialogsReducer,
     music: musicReducer,
     todo: todoReducer,
-    usersList: usersListReducer
+    usersList: usersListReducer,
+    auth: authReducer
 })
 
 const store = createStore(reducers)

@@ -32,3 +32,21 @@
     background: #f8d58c;
     border-radius: 16px;
 }
+.login {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    background: #fff;
+    border-radius: 22px;
+    padding: 2px;
+}
+.login > a {
+    position: relative;
+    border-radius: 17px;
+    padding: 7px;
+    border: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: underline;
+    color: #000;
+}
