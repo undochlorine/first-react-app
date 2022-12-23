@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.25adef66.css",
+    "main.js": "/static/js/main.e4552f0b.js",
+    "static/js/787.a40791ce.chunk.js": "/static/js/787.a40791ce.chunk.js",
+    "static/media/pinkGalaxyPortrait.jpg": "/static/media/pinkGalaxyPortrait.60b8835f519ef6896757.jpg",
+    "static/media/pinkGalaxy.jpg": "/static/media/pinkGalaxy.f54378b1c14439642043.jpg",
+    "static/media/hidden.png": "/static/media/hidden.54b3107d160578572bcc.png",
+    "static/media/showed.png": "/static/media/showed.180932f866861728bd41.png",
+    "index.html": "/index.html",
+    "main.25adef66.css.map": "/static/css/main.25adef66.css.map",
+    "main.e4552f0b.js.map": "/static/js/main.e4552f0b.js.map",
+    "787.a40791ce.chunk.js.map": "/static/js/787.a40791ce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25adef66.css",
+    "static/js/main.e4552f0b.js"
+  ]
+}
